@@ -103,6 +103,7 @@
   <ItemGroup>
     <Compile Include="Controllers\ReportControllerTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestsHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
