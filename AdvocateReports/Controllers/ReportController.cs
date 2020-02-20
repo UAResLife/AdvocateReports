@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Web.Http;
 using System.Web.Http.Description;
 using System.Web.Http.Results;
@@ -11,6 +12,7 @@ using HttpGetAttribute = System.Web.Http.HttpGetAttribute;
 
 namespace AdvocateReports.Controllers
 {
+    
     /// <summary>
     /// Returns reports data from the Reporting section of Advocate. 
     /// </summary>
@@ -26,9 +28,10 @@ namespace AdvocateReports.Controllers
         /// 
         [ResponseType(typeof(List<Dictionary<string, string>>))]
         [HttpGet]
+        [BasicAuthentication]
         public JsonResult<List<Dictionary<string, string>>> Json(string Id)
         {
-            var report = ReportHelper.CreateReportObject(Request.Headers);
+            var report = ReportHelper.CreateReportObject(Thread.CurrentPrincipal.Identity.Name);
             return Json(report.GetReportAsList(Id));
         }
 
@@ -40,9 +43,10 @@ namespace AdvocateReports.Controllers
         /// <returns>A string representing the Advocate report in CSV format</returns>
         [ResponseType(typeof(string))]
         [HttpGet]
+        [BasicAuthentication]
         public HttpResponseMessage Csv(string Id)
         {
-            var report = ReportHelper.CreateReportObject(Request.Headers);
+            var report = ReportHelper.CreateReportObject(Thread.CurrentPrincipal.Identity.Name);
 
 
             var result = report.GetReportAsText(Id);

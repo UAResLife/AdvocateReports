@@ -508,11 +508,11 @@
             This class helps with misc methods to support the Reports creation
             </summary>
         </member>
-        <member name="M:AdvocateReports.Models.ReportHelper.CreateReportObject(System.Net.Http.Headers.HttpRequestHeaders)">
+        <member name="M:AdvocateReports.Models.ReportHelper.CreateReportObject(System.String)">
             <summary>
             This method creates the Advocate report object
             </summary>
-            <param name="headers">The headers object in the HTTP request</param>
+            <param name="UserAndPassword">User and password separated by a colom (:)</param>
             <returns>An Advocate report object</returns>
         </member>
     </members>

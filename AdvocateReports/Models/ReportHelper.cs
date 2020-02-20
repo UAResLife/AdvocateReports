@@ -13,15 +13,15 @@ namespace AdvocateReports.Models
         /// <summary>
         /// This method creates the Advocate report object
         /// </summary>
-        /// <param name="headers">The headers object in the HTTP request</param>
+        /// <param name="UserAndPassword">User and password separated by a colom (:)</param>
         /// <returns>An Advocate report object</returns>
-        public static AdvocateReport CreateReportObject(HttpRequestHeaders headers)
+        public static AdvocateReport CreateReportObject(string UserAndPassword)
         {
-            if (!headers.Contains("usr") | !headers.Contains("pwd")) throw new Exception("No credentials were provided");
+            var credentials = UserAndPassword.Split(':');
 
-
-            var password = headers.GetValues("pwd").FirstOrDefault();
-            var username = headers.GetValues("usr").FirstOrDefault();
+            var username = credentials[0];
+            var password = credentials[1];
+            
 
             var reports = new AdvocateReport(new Uri("http://arizona-advocate.symplicity.com/ws/report_api.php"))
             {
