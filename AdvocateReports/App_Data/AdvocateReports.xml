@@ -486,21 +486,23 @@
             Returns reports data from the Reporting section of Advocate. 
             </summary>
         </member>
-        <member name="M:AdvocateReports.Controllers.ReportController.Json(System.String)">
+        <member name="M:AdvocateReports.Controllers.ReportController.Json(System.String,System.Boolean)">
             <summary>
             This command gets any report's data from Advocate by providing its ID.
             Credentials need to be provided in the request header as a "pwd" and "usr" headers.
             </summary>
             <param name="Id">The Advocate ID of the report, e.g. 857e4c823cd4c3e7687f88c3b03ae273</param>
+            <param name="BypassCache">If true, the memory cache is not used.</param>
             <returns>A json object with the report's data</returns>
             
         </member>
-        <member name="M:AdvocateReports.Controllers.ReportController.Csv(System.String)">
+        <member name="M:AdvocateReports.Controllers.ReportController.Csv(System.String,System.Boolean)">
             <summary>
             This command gets any report's data from Advocate by providing its ID.
             Credentials need to be provided in the request header as a "pwd" and "usr" headers.
             </summary>
             <param name="Id">The Advocate ID of the report, e.g. 857e4c823cd4c3e7687f88c3b03ae273</param>
+            <param name="BypassCache">If true, the memory cache is not used.</param>
             <returns>A string representing the Advocate report in CSV format</returns>
         </member>
         <member name="T:AdvocateReports.Models.ReportHelper">
@@ -508,11 +510,12 @@
             This class helps with misc methods to support the Reports creation
             </summary>
         </member>
-        <member name="M:AdvocateReports.Models.ReportHelper.CreateReportObject(System.String)">
+        <member name="M:AdvocateReports.Models.ReportHelper.CreateReportObject(System.String,System.Boolean)">
             <summary>
             This method creates the Advocate report object
             </summary>
             <param name="UserAndPassword">User and password separated by a colom (:)</param>
+            <param name="ByPassCache">If true, the memory cache will not be used</param>
             <returns>An Advocate report object</returns>
         </member>
     </members>

@@ -24,14 +24,15 @@ namespace AdvocateReports.Controllers
         /// Credentials need to be provided in the request header as a "pwd" and "usr" headers.
         /// </summary>
         /// <param name="Id">The Advocate ID of the report, e.g. 857e4c823cd4c3e7687f88c3b03ae273</param>
+        /// <param name="BypassCache">If true, the memory cache is not used.</param>
         /// <returns>A json object with the report's data</returns>
         /// 
         [ResponseType(typeof(List<Dictionary<string, string>>))]
         [HttpGet]
         [BasicAuthentication]
-        public JsonResult<List<Dictionary<string, string>>> Json(string Id)
+        public JsonResult<List<Dictionary<string, string>>> Json(string Id, bool BypassCache = false)
         {
-            var report = ReportHelper.CreateReportObject(Thread.CurrentPrincipal.Identity.Name);
+            var report = ReportHelper.CreateReportObject(Thread.CurrentPrincipal.Identity.Name, BypassCache);
             return Json(report.GetReportAsList(Id));
         }
 
@@ -40,13 +41,14 @@ namespace AdvocateReports.Controllers
         /// Credentials need to be provided in the request header as a "pwd" and "usr" headers.
         /// </summary>
         /// <param name="Id">The Advocate ID of the report, e.g. 857e4c823cd4c3e7687f88c3b03ae273</param>
+        /// <param name="BypassCache">If true, the memory cache is not used.</param>
         /// <returns>A string representing the Advocate report in CSV format</returns>
         [ResponseType(typeof(string))]
         [HttpGet]
         [BasicAuthentication]
-        public HttpResponseMessage Csv(string Id)
+        public HttpResponseMessage Csv(string Id, bool BypassCache = false)
         {
-            var report = ReportHelper.CreateReportObject(Thread.CurrentPrincipal.Identity.Name);
+            var report = ReportHelper.CreateReportObject(Thread.CurrentPrincipal.Identity.Name, BypassCache);
 
 
             var result = report.GetReportAsText(Id);

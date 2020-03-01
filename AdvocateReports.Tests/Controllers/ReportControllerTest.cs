@@ -16,16 +16,6 @@ namespace AdvocateReports.Tests.Controllers
         }
 
 
-        [TestMethod]
-        public void OnlyGetData()
-        {
-            var report = TestsHelper.CreateAdvocateReport("readonly", "");
-            var xmlData = report.GetReportData("4a94dc89a2b1e0859e809f74dcfeb0a4");
-            var stringData = xmlData.InnerText;
-            var formattedData = Utilities.CSVToList(stringData);
-            Assert.IsTrue(formattedData.Count == 14639 && formattedData[0].Count == 35);
-        }
-
     }
 
 
