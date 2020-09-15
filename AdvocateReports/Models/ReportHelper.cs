@@ -25,13 +25,16 @@ namespace AdvocateReports.Models
             var password = credentials[1];
 
             var AdvocateApiURL = ConfigHelper.GetStringValue("AdvocateApiURL");
-            
+            var CacheExpirationHours = ConfigHelper.GetIntValue("CacheExpirationHours");
+
+
 
             var reports = new AdvocateReport(new Uri(AdvocateApiURL))
             {
                 APIPassword = password,
                 APIUserName = username,
                 BypassCache = BypassCache,
+                CacheExpirationHours = CacheExpirationHours,
                 sleepBetweenTries = 300,
                 maxTries = 3,
                 GetReportXMLRequestBody = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:q1=\"https://arizona-advocate.symplicity.com/ws/report_api.php\">\r\n   <s:Body xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" s:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\">\r\n      <q1:getReportData>\r\n         <run_id xsi:type=\"xsd:string\">{RunID}</run_id>\r\n      </q1:getReportData>\r\n   </s:Body>\r\n</s:Envelope>",
