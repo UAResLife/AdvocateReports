@@ -496,6 +496,16 @@
             <returns>A json object with the report's data</returns>
             
         </member>
+        <member name="M:AdvocateReports.Controllers.ReportController.Xml(System.String,System.Boolean)">
+            <summary>
+            This command gets any report's data from Advocate by providing its ID.
+            Credentials need to be provided in the request header as a "pwd" and "usr" headers.
+            </summary>
+            <param name="Id">The Advocate ID of the report, e.g. 857e4c823cd4c3e7687f88c3b03ae273</param>
+            <param name="BypassCache">If true, the memory cache is not used.</param>
+            <returns>An XML object with the report's data</returns>
+            
+        </member>
         <member name="M:AdvocateReports.Controllers.ReportController.Csv(System.String,System.Boolean)">
             <summary>
             This command gets any report's data from Advocate by providing its ID.
