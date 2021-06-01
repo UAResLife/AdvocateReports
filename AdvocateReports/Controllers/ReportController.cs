@@ -45,13 +45,14 @@ namespace AdvocateReports.Controllers
         /// <param name="BypassCache">If true, the memory cache is not used.</param>
         /// <returns>An XML object with the report's data</returns>
         /// 
-        [ResponseType(typeof(List<Dictionary<string, string>>))]
+        [ResponseType(typeof(XmlDocument))]
         [HttpGet]
         [BasicAuthentication]
-        public string Xml(string Id, bool BypassCache = false)
+        public HttpResponseMessage Xml(string Id, bool BypassCache = false)
         {
             var report = ReportHelper.CreateReportObject(Thread.CurrentPrincipal.Identity.Name, BypassCache);
-            return report.GetReportAsXml(Id).InnerXml;
+            var data = report.GetReportAsXml(Id);
+            return new HttpResponseMessage() { Content = new StringContent(data.InnerXml, Encoding.UTF8, "application/xml") };
         }
 
         /// <summary>
